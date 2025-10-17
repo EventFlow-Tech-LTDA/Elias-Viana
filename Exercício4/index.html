@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora web</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            margin-right: 5px;
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+
+        #resultado {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fazendo uma calculadora web</h1>
+    
+    <div>
+        <div>
+            <label for="numero1">Digite o primeiro número:</label>
+            <input type="number" id="numero1" placeholder="Primeiro número">
+        </div>
+            <br   />
+        <div>
+            <label for="numero2">Digite o segundo número:</label>
+            <input type="number" id="numero2" placeholder="Segundo número">
+        </div>
+            <br   />
+        <div>
+            <label>Escolha uma operação:</label>
+            <button onclick="calcular('soma')" type="button">Soma</button>
+            <button onclick="calcular('subtracao')" type="button">Subtração</button>
+            <button onclick="calcular('multiplicacao')" type="button">Multiplicação</button>
+            <button onclick="calcular('divisao')" type="button">Divisão</button>
+        </div>
+        
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function calcular(operacao) {
+
+            const input1 = document.getElementById('numero1');
+            const input2 = document.getElementById('numero2');
+            const pResultado = document.getElementById('resultado');
+
+            const valor1 = parseFloat(input1.value);
+            const valor2 = parseFloat(input2.value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                pResultado.textContent = "Por favor, digite dois números válidos.";
+                return;
+            }
+
+            let resultadoFinal;
+
+            switch (operacao) {
+                case 'soma':
+                    resultadoFinal = valor1 + valor2;
+                    break;
+                case 'subtracao':
+                    resultadoFinal = valor1 - valor2;
+                    break;
+                case 'multiplicacao':
+                    resultadoFinal = valor1 * valor2;
+                    break;
+                case 'divisao':
+                    if (valor2 === 0) {
+                        resultadoFinal = "Não é possível dividir por zero!";
+                    }
+                    else {
+                        resultadoFinal = valor1 / valor2;
+                    }
+                    break;
+            }
+
+            pResultado.textContent = `Resultado: ${resultadoFinal}`;
+        }
+    </script>
+</body>
+</html>
